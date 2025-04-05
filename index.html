@@ -81,29 +81,29 @@
     }
 
     async function askQuestion() {
-      const input = document.getElementById('question');
-      const question = input.value.trim();
-      if (!question) return;
-      addMessage(question, 'user');
-      input.value = '';
+  const input = document.getElementById('question');
+  const question = input.value.trim();
+  if (!question) return;
 
-      // Call backend API (Gemini endpoint placeholder)
-      try {
-        const response = await fetch('https://gemini-chatbot-api.replit.app/ask', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ question })
-        });
+  addMessage(question, 'user');
+  input.value = '';
 
-        const data = await response.json();
-        addMessage(data.answer, 'bot');
-      } catch (error) {
-        console.error(error);
-        addMessage('Sorry, something went wrong. Please try again later.', 'bot');
-      }
-    }
+  try {
+    const response = await fetch('https://5ee3aa02-56a7-495c-a9a2-e2b15997992c-00-36b84iziwnc0x.riker.replit.dev/ask', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ question })
+    });
+
+    const data = await response.json();
+    addMessage(data.answer, 'bot');
+  } catch (error) {
+    console.error(error);
+    addMessage('Sorry, something went wrong. Please try again later.', 'bot');
+  }
+}
   </script>
 </body>
 </html>
